@@ -429,5 +429,13 @@ Syntax: `game.end(score, best score, pixel size)`
 
 ![Scores](https://raw.github.com/mcauser/MicroPython-ESP8266-Nokia-5110-Conways-Game-of-Life/master/photos/end.jpg)
 
+## Links
+
+* [WeMos D1 Mini](http://www.wemos.cc/Products/d1_mini.html)
+* [micropython.org](http://micropython.org)
+* [HSPI docs](http://docs.micropython.org/en/latest/esp8266/esp8266/quickref.html#hardware-spi)
+* [hackaday project](https://hackaday.io/project/13351-nokia-5110-conways-game-of-life)
+
 ## Credits
+
 * Markus Birth's [wipy Nokia 5110 library](https://github.com/mbirth/wipy-upcd8544) (MIT license) with [my ESP8266 modifications](https://github.com/mbirth/wipy-upcd8544/issues/1).

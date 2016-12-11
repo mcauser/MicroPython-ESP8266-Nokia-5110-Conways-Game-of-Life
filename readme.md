@@ -295,11 +295,11 @@ G                       | 7 Gnd                  | Ground
 Test the display:
 
 ```
->>> from machine import Pin, HSPI
+>>> from machine import Pin, SPI
 >>> import time
 >>> import upcd8544
 
->>> spi = HSPI(baudrate=80000000, polarity=0, phase=0)
+>>> spi = SPI(1, baudrate=80000000, polarity=0, phase=0)
 >>> RST = Pin(4)
 >>> CE = Pin(5)
 >>> DC = Pin(12)
@@ -377,7 +377,7 @@ Get the current frequency of the CPU.
 Import libraries
 
 ```
->>> from machine import Pin, HSPI
+>>> from machine import Pin, SPI
 >>> import time
 >>> import upcd8544
 >>> from conways_game_of_life import ConwaysGameOfLife
@@ -386,7 +386,7 @@ Import libraries
 Connect to the Nokia 5110 display (PCD8544) using hardware SPI.
 
 ```
->>> spi = HSPI(baudrate=80000000, polarity=0, phase=0)
+>>> spi = SPI(1, baudrate=80000000, polarity=0, phase=0)
 >>> RST = Pin(4)
 >>> CE = Pin(5)
 >>> DC = Pin(12)
@@ -433,7 +433,7 @@ Syntax: `game.end(score, best score, pixel size)`
 
 * [WeMos D1 Mini](http://www.wemos.cc/Products/d1_mini.html)
 * [micropython.org](http://micropython.org)
-* [HSPI docs](http://docs.micropython.org/en/latest/esp8266/esp8266/quickref.html#hardware-spi)
+* [Hardware SPI docs](http://docs.micropython.org/en/latest/esp8266/esp8266/quickref.html#hardware-spi-bus)
 * [hackaday project](https://hackaday.io/project/13351-nokia-5110-conways-game-of-life)
 
 ## Credits

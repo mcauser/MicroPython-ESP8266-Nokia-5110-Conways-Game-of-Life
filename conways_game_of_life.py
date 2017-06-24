@@ -10,8 +10,7 @@ class ConwaysGameOfLife:
         self.lcd = lcd
         self.width = 84
         self.height = 48
-        self.pages = self.height // 8
-        self.buffer = bytearray(self.pages * self.width)
+        self.buffer = bytearray((self.height // 8) * self.width)
         self.framebuf = FrameBuffer1(self.buffer, self.width, self.height)
 
     def draw(self):

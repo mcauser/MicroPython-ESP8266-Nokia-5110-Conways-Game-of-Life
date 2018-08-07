@@ -123,7 +123,7 @@ $ screen /dev/tty.wchusbserial1420 115200
 
 Click your hardware Reset button or `Control+D` in screen.
 
-```
+```python
 (lots of funny characters) ets_task(40100390, 3, 3fff6300, 4)
 could not open file 'main.py' for reading
 
@@ -134,7 +134,7 @@ Type "help()" for more information.
 
 Check the firmware md5 matches. You should see True. If not, `erase_flash` and `write_flash` again, or try different `write_flash` arguments after reading the [esptool](https://github.com/themadinventor/esptool/) readme.
 
-```
+```python
 >>> import esp
 >>> esp.check_fw()
 size: 531032
@@ -157,7 +157,7 @@ Reboot with WebREPL disabled and the game has enough resources to run.
 
 The default settings will give your device the ip 192.168.4.1
 
-```
+```python
 >>> import network
 >>> ap_if = network.WLAN(network.AP_IF)
 >>> ap_if.active(True)
@@ -165,14 +165,14 @@ The default settings will give your device the ip 192.168.4.1
 
 Yep, it's 192.168.4.1. (ip,netmask,gateway,dns)
 
-```
+```python
 >>> ap_if.ifconfig()
 ('192.168.4.1', '255.255.255.0', '192.168.4.1', '208.67.222.222')
 ```
 
 ### Start WebREPL
 
-```
+```python
 >>> import webrepl
 >>> webrepl.start()
 WebREPL daemon started on ws://192.168.4.1:8266
@@ -187,7 +187,7 @@ Join the MicroPython-xxxxxx network. Password is `micropythoN`. Uppercase N is n
 
 You should see something like this in the REPL:
 
-```
+```python
 >>> add 1
 aid 1
 station: 78:31:c1:bb:cc:dd join, AID = 1
@@ -224,7 +224,7 @@ Later, to make it always on, you can add the start command to boot.py. In this c
 
 Switch back to your terminal and start WebREPL again
 
-```
+```python
 >>> import webrepl
 >>> webrepl.start()
 WebREPL daemon started on ws://192.168.4.1:8266
@@ -233,7 +233,7 @@ Started webrepl in normal mode
 
 Notice this time, it says `normal mode`. FYI - the WebREPL password you entered is saved in `port_config.py` in the root.
 
-```
+```python
 >>> import os
 >>> os.listdir()
 ['boot.py', 'port_config.py']
@@ -241,7 +241,7 @@ Notice this time, it says `normal mode`. FYI - the WebREPL password you entered 
 
 Click `Connect` and enter your password.
 
-```
+```python
 Welcome to MicroPython!
 Password:
 WebREPL connected
@@ -258,14 +258,14 @@ Repeat for the file `conways_game_of_life.py`. It should say `Sent conways_game_
 
 Click `Disconnect`. Click your hardware Reset button, or use `machine.reset()`.
 
-```
+```python
 >>> import machine
 >>> machine.reset()
 ```
 
 After rebooting, if you do not need the Access Point anymore, you can disable it with:
 
-```
+```python
 >>> import network
 >>> ap_if = network.WLAN(network.AP_IF)
 >>> ap_if.active(False)
@@ -294,7 +294,7 @@ G                       | 7 Gnd                  | Ground
 
 Test the display:
 
-```
+```python
 >>> from machine import Pin, SPI
 >>> import time
 >>> import pcd8544
@@ -310,19 +310,19 @@ Test the display:
 
 Switch off the backlight:
 
-```
+```python
 >>> bl.value(0)
 ```
 
 Switch on the backlight:
 
-```
+```python
 >>> bl.value(1)
 ```
 
 Use a framebuffer to store the 4032 pixels (84x48):
 
-```
+```python
 >>> import framebuf
 >>> buffer = bytearray((lcd.height // 8) * lcd.width)
 >>> framebuf = framebuf.FrameBuffer1(buffer, lcd.width, lcd.height)
@@ -330,21 +330,21 @@ Use a framebuffer to store the 4032 pixels (84x48):
 
 Light every pixel:
 
-```
+```python
 >>> framebuf.fill(1)
 >>> lcd.data(buffer)
 ```
 
 Clear screen:
 
-```
+```python
 >>> framebuf.fill(0)
 >>> lcd.data(buffer)
 ```
 
 Print `Hello, World!` using the 8x8 font:
 
-```
+```python
 >>> framebuf.text("Hello,", 0, 0, 1)
 >>> framebuf.text("World!", 0, 9, 1)
 >>> lcd.data(buffer)
@@ -358,7 +358,7 @@ If all this works, let's play.
 
 Get the current frequency of the CPU.
 
-```
+```python
 >>> import machine
 >>> machine.freq()
 80,000,000
@@ -366,13 +366,13 @@ Get the current frequency of the CPU.
 
 80,000,000 means 80MHz. If you want Moar Speed, set the CPU frequency to 160 MHz using:
 
-```
+```python
 >>> machine.freq(160000000)
 ```
 
 Import libraries
 
-```
+```python
 >>> from machine import Pin, SPI
 >>> import time
 >>> import pcd8544
@@ -381,7 +381,7 @@ Import libraries
 
 Connect to the Nokia 5110 display (PCD8544) using hardware SPI.
 
-```
+```python
 >>> spi = SPI(1, baudrate=80000000, polarity=0, phase=0)
 >>> cs = Pin(2)
 >>> dc = Pin(15)
@@ -393,13 +393,13 @@ Connect to the Nokia 5110 display (PCD8544) using hardware SPI.
 
 Switch off the backlight:
 
-```
+```python
 >>> bl.value(0)
 ```
 
 Load the game, display the splash screen.
 
-```
+```python
 >>> game = ConwaysGameOfLife(lcd)
 >>> game.intro()
 ```
@@ -408,7 +408,7 @@ Start a game with 6x6 px lifeforms with zero delay between generations.
 
 Syntax: `game.begin(pixel size, delay between generations)`
 
-```
+```python
 >>> game.begin(6,0)
 ```
 
@@ -420,7 +420,7 @@ You can even fake a high score.
 
 Syntax: `game.end(score, best score, pixel size)`
 
-```
+```python
 >>> game.end(31337,8008135,2)
 ```
 
@@ -433,3 +433,7 @@ Syntax: `game.end(score, best score, pixel size)`
 * [micropython.org](http://micropython.org)
 * [Hardware SPI docs](http://docs.micropython.org/en/latest/esp8266/esp8266/quickref.html#hardware-spi-bus)
 * [hackaday project](https://hackaday.io/project/13351-nokia-5110-conways-game-of-life)
+
+## License
+
+Licensed under the [MIT License](http://opensource.org/licenses/MIT).
